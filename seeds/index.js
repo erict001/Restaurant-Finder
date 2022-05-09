@@ -13,9 +13,9 @@ const users = [
         email: "erict001@gmail.com"
     },
     {
-        username: "taychen",
+        username: "tayshen",
         password: "password2",
-        email: "taychen@gmail.com"
+        email: "tayshen@gmail.com"
     }
 ]
 
