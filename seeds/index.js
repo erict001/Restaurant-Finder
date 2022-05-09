@@ -13,9 +13,15 @@ const users = [
         email: "erict001@gmail.com"
     },
     {
+<<<<<<< HEAD
         username: "taychen",
         password: "password2",
         email: "taychen@gmail.com"
+=======
+        username: "tayshen",
+        password: "password2",
+        email: "tayshen@gmail.com"
+>>>>>>> dev
     }
 ]
 
