@@ -9,6 +9,7 @@ Favorite.init({
         type: DataTypes.INTEGER,
         allowNull: true,
         autoIncrement: true,
+        primaryKey: true,
     },
     name: {
         type: DataTypes.STRING,
@@ -20,7 +21,6 @@ Favorite.init({
     },
     favorites_id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
     }
 },{
     sequelize
