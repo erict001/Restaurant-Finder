@@ -1,12 +1,14 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const User = require('./User');
 
 class Favorite extends Model {}
 
 Favorite.init({
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: true,
+        autoIncrement: true,
     },
     name: {
         type: DataTypes.STRING,
@@ -15,6 +17,10 @@ Favorite.init({
     location: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    favorites_id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
     }
 },{
     sequelize
