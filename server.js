@@ -1,6 +1,9 @@
 const express = require('express');
 const routes = require('./routes/api');
 const sequelize = require('./config/connection');
+const session = require("express-session");
+const mysql = require('mysql2');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 const app = express();
