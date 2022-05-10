@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 
 //find all
 router.get("/", (req, res) => {
+    console.log(Favorite)
     User.findAll({
         include: [Favorite]
     })
@@ -22,7 +23,9 @@ router.get("/logout", (req, res) => {
 })
 //find one
 router.get("/:id", (req, res) => {
-    User.findByPk(req.params.id, {})
+    User.findByPk(req.params.id, {
+        include: [Favorite]
+    })
         .then(dbUser => {
             res.json(dbUser);
         })
@@ -32,12 +35,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.get("/login",(req,res)=>{
-    if(req.session.user){
-        return res.redirect("/profile")
-    }
-    res.render("login")
-})
+
 
 //create user
 router.post("/", (req, res) => {
@@ -46,8 +44,8 @@ router.post("/", (req, res) => {
             req.session.user = {
                 id: newUser.id,
                 username: newUser.username,
-                password: newUser.password,
-                email: newUser.email
+                email: newUser.email,
+                loggedIn: true
             }
             res.json(newUser);
         })
@@ -68,7 +66,9 @@ router.post("/login", (req, res) => {
         if (bcrypt.compareSync(req.body.password, foundUser.password)) {
             req.session.user = {
                 id: foundUser.id,
-                username: foundUser.username
+                username: foundUser.username,
+                email: foundUser.email,
+                loggedIn: true
             }
             return res.json(foundUser)
         } else {

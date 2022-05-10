@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./routes/api');
+const routes = require('./routes');
 const sequelize = require('./config/connection');
 const session = require("express-session");
 const mysql = require('mysql2');
