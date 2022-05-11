@@ -4,11 +4,16 @@ const sequelize = require('./config/connection');
 const session = require("express-session");
 const mysql = require('mysql2');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { engine } = require('express-handlebars')
+const { engine } = require('express-handlebars');
+const axios = require('axios').default;
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const apiKey = "dyKoMIant5tA4GF_vX1UaxJLb-TfUwZYCtl0VRWMALgH7lh844ReqqLxQoEvbwuxVWa5L20BHtg0jFKVYo3dQ_TJbqUQuJ8DmB2oaj6ACsn8ctez8syWn2tAU7R6YnYx";
+
+const yelp = require('yelp-fusion');
+const client = yelp.client(apiKey);
 
 const sess = {
   secret: process.env.SESSION_SECRET,
@@ -21,6 +26,35 @@ const sess = {
       db: sequelize
   })
 };
+
+app.get('/profile', (req, res) => {
+  
+  
+  client.search({
+    term: 'Four Barrel Coffee',
+    location: 'san francisco, ca',
+  }).then(response => {
+    console.log(response.jsonBody.businesses[0].name);
+  }).catch(e => {
+    console.log(e);
+  });
+
+  // axios.get('https://api.yelp.com/v3/businesses/WavvLdfdP6g8aZTtbBQHTw')
+  //   .then(function (response) {
+  //     // handle success
+  //     res.json(response.data);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     res.json(error);
+  //   })
+  //   .then(function () {
+  //     // always executed
+  //   });
+})
+// Make a request for a user with a given ID
+
+
 
 app.use(session(sess));
 app.use(express.json());
