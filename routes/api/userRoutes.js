@@ -4,7 +4,7 @@ const { User, Favorite } = require("../../models/");
 const bcrypt = require("bcrypt");
 
 //find all
-router.get("/", (req, res) => {
+router.get("/data", (req, res) => {
     User.findAll({
         include: [Favorite]
     })
@@ -16,6 +16,8 @@ router.get("/", (req, res) => {
             res.status(500).json({ msg: "An error occured", err });
         });
 });
+
+
 
 router.get("/logout", (req, res) => {
     req.session.destroy();
@@ -111,5 +113,6 @@ router.delete("/:id", (req, res) => {
             res.status(500).json({ msg: "An error occured", err });
         });
 });
+
 
 module.exports = router;
