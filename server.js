@@ -5,7 +5,7 @@ const session = require("express-session");
 const mysql = require('mysql2');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { engine } = require('express-handlebars');
-const axios = require('axios').default;
+// const termality = 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,31 +27,19 @@ const sess = {
   })
 };
 
-app.get('/profile', (req, res) => {
-  
-  
+// app.get('/profile', (req, res) => {
   client.search({
-    term: 'Four Barrel Coffee',
-    location: 'san francisco, ca',
-  }).then(response => {
-    console.log(response.jsonBody.businesses[0].name);
-  }).catch(e => {
+    term: 'coffee',
+    location: 'Seattle',
+}).then(response => {
+    console.log(response.jsonBody.businesses[0].name, "this is name");
+    console.log(response.jsonBody.businesses[0].location.display_address, "this is local");
+    console.log(response.jsonBody.businesses[0], "this is whole business info")
+}).catch(e => {
     console.log(e);
-  });
-
-  // axios.get('https://api.yelp.com/v3/businesses/WavvLdfdP6g8aZTtbBQHTw')
-  //   .then(function (response) {
-  //     // handle success
-  //     res.json(response.data);
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     res.json(error);
-  //   })
-  //   .then(function () {
-  //     // always executed
-  //   });
-})
+});
+  
+//   
 // Make a request for a user with a given ID
 
 

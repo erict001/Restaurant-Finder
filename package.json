@@ -9,6 +9,7 @@
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
     "node": "^17.7.2",
+    "nodejs": "^0.0.0",
     "sequelize": "^6.19.0",
     "yelp-fusion": "^3.0.0"
   },
