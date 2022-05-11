@@ -1,10 +1,10 @@
 <h1>Welcome {{username}}</h1>
-<h2>All your blogs:</h2>
+{{!-- <h2>All your blogs:</h2>
 <form action="" id="newBlog">
     <input type="text" id="title" placeholder="title">
     <textarea id="body" cols="30" rows="10"></textarea>
     <button>Submit</button>
-</form>
+</form> --}}
 {{#each Favorite}}
     <h2>{{title}}</h3>
     <h5>{{description}}</h5>
@@ -15,4 +15,4 @@
     <hr>
 {{/each}}
 
-<script src="/js/profile.js"></script>
+<script src="./asset/js/profile.js"></script>
