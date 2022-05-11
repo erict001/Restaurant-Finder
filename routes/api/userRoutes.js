@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 
 //find all
 router.get("/", (req, res) => {
-    console.log(Favorite)
     User.findAll({
         include: [Favorite]
     })
@@ -14,28 +13,33 @@ router.get("/", (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ msg: "an error occured", err });
+            res.status(500).json({ msg: "An error occured", err });
         });
 });
+
 router.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/")
 })
+
 //find one
 router.get("/:id", (req, res) => {
-    User.findByPk(req.params.id, {
-        include: [Favorite]
-    })
+    User.findByPk(req.params.id, {})
         .then(dbUser => {
             res.json(dbUser);
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ msg: "an error occured", err });
+            res.status(500).json({ msg: "An error occured", err });
         });
 });
 
-
+router.get("/login",(req,res)=>{
+    if(req.session.user){
+        return res.redirect("/profile")
+    }
+    res.render("login")
+})
 
 //create user
 router.post("/", (req, res) => {
@@ -44,14 +48,14 @@ router.post("/", (req, res) => {
             req.session.user = {
                 id: newUser.id,
                 username: newUser.username,
-                email: newUser.email,
-                loggedIn: true
+                password: newUser.password,
+                email: newUser.email
             }
             res.json(newUser);
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ msg: "an error occured", err });
+            res.status(500).json({ msg: "An error occured", err });
         });
 });
 router.post("/login", (req, res) => {
@@ -61,22 +65,20 @@ router.post("/login", (req, res) => {
         }
     }).then(foundUser => {
         if (!foundUser) {
-            return res.status(400).json({ msg: "wrong login credentials" })
+            return res.status(400).json({ msg: "Wrong login credentials" })
         }
         if (bcrypt.compareSync(req.body.password, foundUser.password)) {
             req.session.user = {
                 id: foundUser.id,
-                username: foundUser.username,
-                email: foundUser.email,
-                loggedIn: true
+                username: foundUser.username
             }
             return res.json(foundUser)
         } else {
-            return res.status(400).json({ msg: "wrong login credentials" })
+            return res.status(400).json({ msg: "Wrong login credentials" })
         }
     }).catch(err => {
         console.log(err);
-        res.status(500).json({ msg: "an error occured", err });
+        res.status(500).json({ msg: "An error occured", err });
     });
 });
 
@@ -91,7 +93,7 @@ router.put("/:id", (req, res) => {
     })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ msg: "an error occured", err });
+            res.status(500).json({ msg: "An error occured", err });
         });
 });
 
@@ -106,7 +108,7 @@ router.delete("/:id", (req, res) => {
     })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ msg: "an error occured", err });
+            res.status(500).json({ msg: "An error occured", err });
         });
 });
 
