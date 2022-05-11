@@ -19,10 +19,7 @@ router.get("/data", (req, res) => {
 
 
 
-router.get("/logout", (req, res) => {
-    req.session.destroy();
-    res.redirect("/")
-})
+
 
 //find one
 router.get("/:id", (req, res) => {
@@ -114,5 +111,9 @@ router.delete("/:id", (req, res) => {
         });
 });
 
+// router.get("/logout", (req, res) => {
+//     req.session.destroy();
+//     res.redirect("/")
+// })
 
 module.exports = router;
