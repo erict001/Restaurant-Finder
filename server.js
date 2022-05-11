@@ -27,9 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-const hbs = exphbs.create({});
-app.engine('handlebars', hbs.engine);
+// const hbs = exphbs.create({});
+app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 app.use(routes);
 
