@@ -1,31 +1,8 @@
 const sequelize = require("../config/connection")
 const {User,Favorite} = require("../models")
 
-const users = [
-    {
-        username: "Interrubble",
-        password: "password",
-        email: "delagarzachris@icloud.com"
-    },
-    {
-        username: "erict001",
-        password: "password1",
-        email: "erict001@gmail.com"
-    },
-    {
-        username: "tayshen",
-        password: "password2",
-        email: "tayshen@gmail.com"
-    }
-]
-
-const favorites = [
-    {
-        name: "McDonalds",
-        location: "Seattle, WA",
-        favorites_id: "2"
-    }
-]
+const users = require('./userData.json')
+const favorites = require('./favoriteData.json')
 
 const loadUp = async ()=>{
     try{
@@ -33,7 +10,9 @@ const loadUp = async ()=>{
         await User.bulkCreate(users,{
             individualHooks:true
         });
-        await Favorite.bulkCreate(favorites);
+        await Favorite.bulkCreate(favorites,{
+            individualHooks:true
+        });
         process.exit(0);
     } catch(err){
         console.log(err)

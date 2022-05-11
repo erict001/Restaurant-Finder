@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "McDonalds",
+        "location": "Seattle, WA",
+        "user_id": 2
+    },
+    {
+        "id": 2,
+        "name": "Burger King",
+        "location": "Redmond, WA",
+        "user_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Taco Bell",
+        "location": "Bellevue, WA",
+        "user_id": 3
+    },
+    {
+        "id": 4,
+        "name": "Chipotle",
+        "location": "Everett, WA",
+        "user_id": 1
+    }
+]
