@@ -1,11 +1,14 @@
 <h1>Welcome {{username}}</h1>
-{{!-- <h2>All your blogs:</h2>
-<form action="" id="newBlog">
-    <input type="text" id="title" placeholder="title">
-    <textarea id="body" cols="30" rows="10"></textarea>
-    <button>Submit</button>
-</form> --}}
-{{#each Favorite}}
+<aside>
+    <button id="favorites">Favorites</button>
+
+    <input type="text" id="name" placeholder="Search By Name">
+    {{!-- <input type="text" placeholder="Search By Location">
+    <input type="text" placeholder="Search By Reviews"> --}}
+    <button id="search">search</button>
+</aside>
+
+{{#each restaurant}}
     <h2>{{title}}</h3>
     <h5>{{description}}</h5>
     <button>Call</button>
