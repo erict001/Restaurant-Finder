@@ -1,11 +1,12 @@
 const express = require('express')
 const router = require('express').Router();
 
-const frontEndRoutes = require('./frontEndRoutes');
-router.use('/', frontEndRoutes);
+const userRoutes = require('./userRoutes');
+router.use('/user', userRoutes);
+
 
 const restaurantRoutes = require('./restaurantRoutes');
-router.use('/profile', restaurantRoutes);
+router.use('/restaurants', restaurantRoutes);
 
 
 module.exports = router;
