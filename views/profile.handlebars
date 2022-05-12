@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="/asset/css/style.css">
 <aside>
     <h2>Welcome, {{username}}</h2>
-    <button type="button" id="favorites" class="btn btn-success">Favorites</button>
+    <button type="button" id="favorites" class="blue darken-3 btn btn-success">Favorites</button>
     <div class="container">
         <div class="row">
             <div class="col-4">
                 <form id="search">
-                    <input type="text" id="name" placeholder="Search By Name"><br>
-                    <input type="text" id="local" placeholder="Search By Location"><br>
+                    <input class="white" type="text" id="name" placeholder="Search By Name"><br>
+                    <input class="white" type="text" id="local" placeholder="Search By Location"><br>
                     {{!-- <button type="button" id="search" class="btn btn-warning">Search</button> --}}
-                    <button class="btn waves-effect waves-light" type="submit">Search
-                        <i class="material-icons right">send</i>
+                    <button class="btn blue darken-3 white-text waves-effect waves-light" type="submit">Search
+                        <i class="blue darken-3 white-text material-icons right">send</i>
                     </button>
                 </form>
             </div>
-            <div id="restaurant" class="col-8">List of Restaurants
+            <div id="restaurant" class="blue lighten-4 col-8">List of Restaurants
                 <ol id="restaurantRender">
 
                 </ol>
