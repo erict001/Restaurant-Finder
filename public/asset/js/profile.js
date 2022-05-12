@@ -7,24 +7,30 @@ const apiKey = "dyKoMIant5tA4GF_vX1UaxJLb-TfUwZYCtl0VRWMALgH7lh844ReqqLxQoEvbwux
 
 search.addEventListener("submit", event => {
     event.preventDefault();
-    
-        // client.search({
-        //     term: 'coffee',
-        //     location: 'Seattle',
-        // }).then(response => {
-        //     console.log(response.jsonBody.businesses[0].name, "this is name");
-        //     console.log(response.jsonBody.businesses[0].location, "this is local");
-        // }).catch(e => {
-        //     console.log(e);
-        // });
-    
     var termality = document.querySelector("#name").value
     var locality = document.querySelector("#local").value
+    console.log(termality, locality)
+    const businessArray = []
+    client.search({
+       term: termality,
+       location: locality,
+   }).then(response => {
+       for (var i = 0; i < 3 ; i++) {
+           businessArray.push(
+               response.jsonBody.businesses[i]
+           )
+        }
+        console.log(businessArray)
+        return res.render("profile", {title: businessArray.name, location: businessArray.location})
+        // return res.json([termality, locality]);
+       // res.render("profile", 
+   }).catch(e => {
+       console.log(e);
+   });
+});
 
 
     // console.log(termality, locality)
-    
-})
 
 
 

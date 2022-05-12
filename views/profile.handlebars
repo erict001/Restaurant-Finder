@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <h1>Welcome {{username}}</h1>
 <aside>
     <button id="favorites">Favorites</button>
@@ -8,7 +17,12 @@
     <button id="search">search</button>
 </aside>
 <div id="restaurant"></div>
-{{!-- {{#each restaurant}}
+<main>
+    <ol id="restaurantRender">
+
+    </ol>
+</main>
+{{#each restaurant}}
     <h2>{{title}}</h3>
     <h5>{{location}}</h5>
     <button>Call</button>
@@ -16,7 +30,8 @@
     <button>Make a Reservation</button>
     <button>Favorite</button>
     <hr>
-{{/each}} --}}
-
+{{/each}}
 <script src="./asset/js/profile.js"></script>
-<script src="../server.js"></script>
+<script src="../server.js"></script>   
+</body>
+</html>

@@ -8,23 +8,24 @@ const yelp = require('yelp-fusion');
 const client = yelp.client(apiKey);
 
 
- router.get('/', (req, res) => {
-     client.search({
-        term: 'coffee',
-        location: 'Seattle',
-    }).then(response => {
-        const termality = response.jsonBody.businesses[0].name;
-        const locality = response.jsonBody.businesses[0].location.display_address;
-        console.log(response.jsonBody.businesses[0].name, "this is name");
-        console.log(response.jsonBody.businesses[0].location.display_address, "this is local");
-        console.log(response.jsonBody.businesses[0], "this is whole business info")
-        return res.json(termality);
-        //res.render("profile", { title: termality, location: locality })
-    }).catch(e => {
-        console.log(e);
-    });
-});
-
+// router.post('/', (req, res) => {
+//     const businessArray = []
+//     client.search({
+//        term: 'pizza',
+//        location: 'Seattle',
+//    }).then(response => {
+//        for (var i = 0; i < 3 ; i++) {
+//            businessArray.push(
+//                response.jsonBody.businesses[i]
+//            )
+//         }
+//         return res.render("profile", businessArray)
+//         // return res.json([termality, locality]);
+//        // res.render("profile", 
+//    }).catch(e => {
+//        console.log(e);
+//    });
+// });
 
 router.get("/favorites",(req,res)=>{
     if(!req.session.user){
