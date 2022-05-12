@@ -7,7 +7,7 @@ login.addEventListener("submit", event => {
         password: document.querySelector("#loginPassword").value,
     };
     console.log(userObj)
-    fetch("/api/user/login", {
+    fetch("api/user/login", {
         method: "POST",
         body: JSON.stringify(userObj),
         headers: {
@@ -15,6 +15,7 @@ login.addEventListener("submit", event => {
         }
     }).then(res => {
         if (res.ok) {
+            console.log(res)
             location.href = "/profile";
         } else {
             alert("Invalid login");
