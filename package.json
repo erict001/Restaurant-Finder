@@ -7,6 +7,7 @@
     "express": "^4.18.1",
     "express-handlebars": "^6.0.5",
     "express-session": "^1.17.2",
+    "graphql-request": "^4.2.0",
     "mysql2": "^2.3.3",
     "node": "^17.7.2",
     "nodejs": "^0.0.0",
