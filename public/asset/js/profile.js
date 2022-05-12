@@ -25,8 +25,8 @@ search.addEventListener("submit", event => {
                 menu.innerText = 'Review Menu'
                 const fave = document.createElement('button')
                 fave.innerText = 'Favorite Restaurant'
-                rest.append(call,menu,fave);
                 render.appendChild(rest);
+                rest.append(call,menu,fave);
             }
             console.log(res)
             location.href = "/profile";
