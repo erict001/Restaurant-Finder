@@ -1,9 +1,19 @@
 <aside>
-    <button id="favorites">Favorites</button>
-
-    <input type="text" id="name" placeholder="Search By Name">
-    <input type="text" id="local" placeholder="Search By Location">
-    <button id="search">search</button>
+    <h2>Welcome, {{username}}</h2>
+    <button type="button" id="favorites" class="btn btn-success">Favorites</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <input type="text" id="name" placeholder="Search By Name"><br>
+                <input type="text" id="local" placeholder="Search By Location"><br>
+                {{!-- <button type="button" id="search" class="btn btn-warning">Search</button> --}}
+                <button class="btn waves-effect waves-light" type="submit" name="action">Search
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col-8">List of Restaurants</div>
+        </div>
+    </div>
 </aside>
 <div id="restaurant"></div>
 <main>
@@ -12,14 +22,12 @@
     </ol>
 </main>
 {{#each restaurant}}
-    <h2>{{title}}</h3>
+<h2>{{title}}</h3>
     <h5>{{location}}</h5>
     <button>Call</button>
     <button>View Menu</button>
     <button>Make a Reservation</button>
     <button>Favorite</button>
     <hr>
-{{/each}}
-<script src="./asset/js/profile.js"></script>
-
-
+    {{/each}}
+    <script src="./asset/js/profile.js"></script>
