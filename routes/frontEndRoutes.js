@@ -45,12 +45,12 @@ router.get("/signup", (req, res) => {
 })
 
 router.post("/signup", (req, res) => {
-    User.create().then(userData => {
+    User.create(req.body).then(userData => {
         const hbsData = userData.map(userData => userData.get({ plain: true }))
         // console.log("=======")
         // console.log(hbsData);
         // console.log("=======")
-        res.render("profile", { user: hbsData, loggedIn: req.session.user?.loggedIn, username: req.session.user?.username })
+        return res.render("profile", { user: hbsData, loggedIn: req.session.user?.loggedIn, username: req.session.user?.username })
     })
 })
 

@@ -10,8 +10,8 @@ router.use('/', frontEndRoutes);
 router.use('/restaurant', restaurantRoutes);
 
 
-router.use((req, res) => {
-  res.send("<h1>Wrong Route!</h1>")
-});
+// router.use((req, res) => {
+//   res.send("<h1>Error Route</h1>")
+// });
 
 module.exports = router;
