@@ -28,16 +28,16 @@ const sess = {
 };
 
 // app.get('/profile', (req, res) => {
-  client.search({
-    term: 'coffee',
-    location: 'Seattle',
-}).then(response => {
-    console.log(response.jsonBody.businesses[0].name, "this is name");
-    console.log(response.jsonBody.businesses[0].location.display_address, "this is local");
-    console.log(response.jsonBody.businesses[0], "this is whole business info")
-}).catch(e => {
-    console.log(e);
-});
+//   client.search({
+//     term: 'coffee',
+//     location: 'Seattle',
+// }).then(response => {
+//     console.log(response.jsonBody.businesses[0].name, "this is name");
+//     console.log(response.jsonBody.businesses[0].location.display_address, "this is local");
+//     console.log(response.jsonBody.businesses[0], "this is whole business info")
+// }).catch(e => {
+//     console.log(e);
+// });
   
 //   
 // Make a request for a user with a given ID
