@@ -1,51 +1,61 @@
 const express = require('express');
 const router = express.Router();
-const { User, Favorite } = require('../../models')
+const { Favorite, Restaurant } = require('../../models')
+const mysql = require('mysql2')
 
 const apiKey = "dyKoMIant5tA4GF_vX1UaxJLb-TfUwZYCtl0VRWMALgH7lh844ReqqLxQoEvbwuxVWa5L20BHtg0jFKVYo3dQ_TJbqUQuJ8DmB2oaj6ACsn8ctez8syWn2tAU7R6YnYx";
-
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        // MySQL username,
+        user: 'root',
+        // MySQL password
+        password: 'password',
+        database: 'restaurant_db'
+    },
+    console.log(`Connected to the restaurant_db database.`)
+);
 const yelp = require('yelp-fusion');
 const client = yelp.client(apiKey);
+const businessArray = []
 
-router.get('/', (req, res) => {
-    console.log("I'm here")
-    const businessArray = []
-    client.search({
-        term: req.body.busName,
-        location: req.body.busLocal,
-    }).then(response => {
-        console.log(response.jsonBody.businesses[0])
-        for (var i = 0; i < 3; i++) {
-            businessArray.push(
-                response.jsonBody.businesses[i]
-            )
-        }
-        return res.render("profile",businessArray)
-        // return res.json([termality, locality]);
-        // res.render("profile", 
-    }).catch(e => {
-        console.log(e);
-    });
-});
+// router.get('/', async (req, res) => {
+//     console.log("I'm here=================================")
+//     db.query(`SELECT * FROM restaurant_db`, (err, rows) => {
+//         if (err) {
+//             return;
+//         }
+//         console.log(rows)
+//         res.render('profile', businessArray)
+//     })
+// });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     console.log("this is post route====================================")
-    const businessArray = []
-    client.search({
+    const yelpSearch = await client.search({
         term: req.body.busName,
         location: req.body.busLocal,
-    }).then(response => {
-        for (var i = 0; i < 3; i++) {
-            businessArray.push(
-                response.jsonBody.businesses[i]
-                )
-                console.log(response.jsonBody.businesses[i])
-        }
-        return res.json(businessArray)
-    }).catch(e => {
-        console.log(e);
-    });
-});
+    })
+    const restaurant = []
+    for (var i = 0; i < 3; i++) {
+        businessArray.push(yelpSearch.jsonBody.businesses[i])
+        console.log(yelpSearch.jsonBody.businesses[0].location)
+        restaurant.push(
+            {
+                name: yelpSearch.jsonBody.businesses[i].name,
+                location: yelpSearch.jsonBody.businesses[i].location.display_address.join(' '),
+                phone: yelpSearch.jsonBody.businesses[i].display_phone,
+                rating: yelpSearch.jsonBody.businesses[i].rating,
+                isClose: yelpSearch.jsonBody.businesses[i].is_closed,
+                userId: req.session.user.id,
+            }
+        )
+    }
+    const bigSearch = await Restaurant.bulkCreate(restaurant)
+    console.log(bigSearch)
+    // res.json('success')
+})
+
 
 router.get("/favorites", (req, res) => {
     if (!req.session.user) {

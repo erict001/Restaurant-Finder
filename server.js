@@ -5,7 +5,6 @@ const session = require("express-session");
 const mysql = require('mysql2');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { engine } = require('express-handlebars');
-// const termality = 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -57,6 +56,6 @@ app.set('views', './views');
 
 app.use(routes);
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
 });
