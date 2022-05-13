@@ -52,6 +52,7 @@ router.post('/', async (req, res) => {
             }
         )
     }
+    console.log(restaurant)
     const bigSearch = await Restaurant.bulkCreate(restaurant)
     //console.log(bigSearch)
     res.json(bigSearch)
