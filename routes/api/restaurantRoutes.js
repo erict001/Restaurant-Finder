@@ -3,18 +3,8 @@ const router = express.Router();
 const { Favorite, Restaurant } = require('../../models')
 const mysql = require('mysql2')
 
-const apiKey = "dyKoMIant5tA4GF_vX1UaxJLb-TfUwZYCtl0VRWMALgH7lh844ReqqLxQoEvbwuxVWa5L20BHtg0jFKVYo3dQ_TJbqUQuJ8DmB2oaj6ACsn8ctez8syWn2tAU7R6YnYx";
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        // MySQL username,
-        user: 'root',
-        // MySQL password
-        password: 'password',
-        database: 'restaurant_db'
-    },
-    console.log(`Connected to the restaurant_db database.`)
-);
+const apiKey = process.env.YELP_API_KEY;
+
 const yelp = require('yelp-fusion');
 const client = yelp.client(apiKey);
 const businessArray = []
