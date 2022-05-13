@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
         location: req.body.busLocal,
     })
     const restaurant = []
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < Math.min(20, yelpSearch.jsonBody.businesses.length); i++) {
         businessArray.push(yelpSearch.jsonBody.businesses[i])
         console.log(yelpSearch.jsonBody.businesses[0].location)
         restaurant.push(
@@ -52,8 +52,8 @@ router.post('/', async (req, res) => {
         )
     }
     const bigSearch = await Restaurant.bulkCreate(restaurant)
-    console.log(bigSearch)
-    // res.json('success')
+    //console.log(bigSearch)
+    res.json(bigSearch)
 })
 
 
