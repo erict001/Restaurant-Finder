@@ -4,6 +4,12 @@ const faveBtn = document.getElementById('faveBtn')
 const resId = document.getElementById('lid')
 
 
+favorites = JSON.parse(localStorage.getItem("favorites")) || []
+
+
+
+
+
 search.addEventListener("submit", event => {
     event.preventDefault();
     console.log("clicked")
@@ -68,16 +74,15 @@ function clearRestaurants() {
     }
 }
 
-const favorites = []
+
 function saveFavorite (event) {
-    favorites.push(event.target.getAttribute("data-restaurantName"))
+    favorites.unshift(event.target.getAttribute("data-restaurantName"))
     console.log(favorites)
-    localStorage.setItem("favorites", favorites)
-    
+    localStorage.setItem("favorites", JSON.stringify(favorites))
+    const ol = document.querySelector("#favoriteRender")
+    const list = document.createElement("button");
+    list.innerText = favorites[0]
+    // favList.append(favorites[0])
+    ol.append(list)
+    // renderFavorites();
 }
-
-var favItems = JSON.parse(localStorage.getItem(favorites))
-
-// if (favItems){
-//     var favorites = favItems
-// }
