@@ -18,32 +18,35 @@ search.addEventListener("submit", event => {
         }
     }).then(res => {
 
-        
+
         if (res.ok) {
             res.json().then(data => {
-                console.log(data)    
+                console.log(data)
                 clearRestaurants();
                 for (let i = 0; i < Math.min(20, data.length); i++) {
                     const rest = document.createElement('li')
                     // const append = document.createElement('p')
-                    rest.textContent = JSON.stringify(data[i].name + " " + data[i].location)
+                    var callRest = document.createElement('a')
+                    callRest.setAttribute('href',`tel:${data[i].phone}`)
+                    callRest.innerText = `${data[i].phone}`
+                    rest.textContent = JSON.stringify(data[i].name + " " + data[i].location + " ")
 
                     const image = document.createElement('img')
                     image.src = (data[i].imageURL)
                     image.style = "height:80px"
-                    
-                    const call = document.createElement('button')
-                    call.innerText = 'Call'
-                    const menu = document.createElement('button')
-                    menu.innerText = 'Is working?'
+
+                    // const call = document.createElement('button')
+                    // call.innerText = 'Call'
+                    // const menu = document.createElement('button')
+                    // menu.innerText = 'Is working?'
                     const fave = document.createElement('button')
                     fave.innerText = 'Favorite Restaurant'
                     fave.setAttribute('id', 'my-id')
 
                     render.appendChild(rest);
-                    rest.append(image, call,menu,fave);
+                    rest.append(callRest, image, fave);
                 }
-           })
+            })
             console.log(res)
             // location.href = "/profile";
         } else {
@@ -54,7 +57,7 @@ search.addEventListener("submit", event => {
     })
 });
 
-function clearRestaurants () {
+function clearRestaurants() {
     while (render.lastChild) {
         render.removeChild(render.lastChild);
     }
