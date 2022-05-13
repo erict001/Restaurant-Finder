@@ -16,8 +16,24 @@ Favorite.init({
         allowNull: false
     },
     location: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
+    },
+    phone: {
+        type: DataTypes.STRING,
+        allowNull:false,
+    },
+    rating: {
+        type: DataTypes.DECIMAL,
+        allowNull:false,
+    },
+    isClose: {
+        type: DataTypes.BOOLEAN,
+        allowNull:false
+    },
+    imageURL: {
+        type: DataTypes.TEXT,
+        allowNull:false
     },
     user_id: {
         type: DataTypes.INTEGER,

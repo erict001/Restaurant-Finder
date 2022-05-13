@@ -1,5 +1,7 @@
 const search = document.querySelector("#search");
 const render = document.getElementById('restaurantRender');
+const faveBtn = document.getElementById('faveBtn')
+const resId = document.getElementById('lid')
 
 
 search.addEventListener("submit", event => {
@@ -17,14 +19,14 @@ search.addEventListener("submit", event => {
             "Content-Type": "application/json"
         }
     }).then(res => {
-
-        
         if (res.ok) {
             res.json().then(data => {
                 console.log(data)    
                 clearRestaurants();
                 for (let i = 0; i < Math.min(20, data.length); i++) {
                     const rest = document.createElement('li')
+                    // const restName = data[i].name
+                    rest.setAttribute('id', 'lid')
                     // const append = document.createElement('p')
                     rest.textContent = JSON.stringify(data[i].name + " " + data[i].location)
 
@@ -38,7 +40,8 @@ search.addEventListener("submit", event => {
                     menu.innerText = 'Is working?'
                     const fave = document.createElement('button')
                     fave.innerText = 'Favorite Restaurant'
-                    fave.setAttribute('id', 'my-id')
+                    fave.addEventListener("click", saveFavorite)
+                    fave.setAttribute("data-restaurantName", data[i].name)
 
                     render.appendChild(rest);
                     rest.append(image, call,menu,fave);
@@ -60,3 +63,16 @@ function clearRestaurants () {
     }
 }
 
+const favorites = []
+function saveFavorite (event) {
+    favorites.push(event.target.getAttribute("data-restaurantName"))
+    console.log(favorites)
+    localStorage.setItem("favorites", favorites)
+    
+}
+
+var favItems = JSON.parse(localStorage.getItem(favorites))
+
+// if (favItems){
+//     var favorites = favItems
+// }
