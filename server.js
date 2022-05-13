@@ -9,7 +9,7 @@ const { engine } = require('express-handlebars');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const apiKey = "dyKoMIant5tA4GF_vX1UaxJLb-TfUwZYCtl0VRWMALgH7lh844ReqqLxQoEvbwuxVWa5L20BHtg0jFKVYo3dQ_TJbqUQuJ8DmB2oaj6ACsn8ctez8syWn2tAU7R6YnYx";
+const apiKey = process.env.YELP_API_KEY;
 
 const yelp = require('yelp-fusion');
 const client = yelp.client(apiKey);
