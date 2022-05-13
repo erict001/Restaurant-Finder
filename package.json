@@ -9,8 +9,6 @@
     "express-session": "^1.17.2",
     "graphql-request": "^4.2.0",
     "mysql2": "^2.3.3",
-    "node": "^17.7.2",
-    "nodejs": "^0.0.0",
     "sequelize": "^6.19.0",
     "yelp-fusion": "^3.0.0"
   },
@@ -18,5 +16,20 @@
     "start": "node server.js",
     "resetdb": "mysql -u root -p <  ./db/schema.sql",
     "seed": "node seeds/index.js"
-  }
+  },
+  "name": "restaurant-finder",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erict001/Restaurant-Finder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erict001/Restaurant-Finder/issues"
+  },
+  "homepage": "https://github.com/erict001/Restaurant-Finder#readme",
+  "keywords": []
 }

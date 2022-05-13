@@ -25,6 +25,8 @@ search.addEventListener("submit", event => {
                 clearRestaurants();
                 for (let i = 0; i < Math.min(20, data.length); i++) {
                     const rest = document.createElement('li')
+                    // const append = document.createElement('p')
+                    rest.textContent = JSON.stringify(data[i].name + data[i].location)
                     const call = document.createElement('button')
                     call.innerText = 'Call'
                     const menu = document.createElement('button')

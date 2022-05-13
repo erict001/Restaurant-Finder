@@ -47,6 +47,7 @@ router.post('/', async (req, res) => {
                 phone: yelpSearch.jsonBody.businesses[i].display_phone,
                 rating: yelpSearch.jsonBody.businesses[i].rating,
                 isClose: yelpSearch.jsonBody.businesses[i].is_closed,
+                imageURL: yelpSearch.jsonBody.businesses[i].image_url,
                 userId: req.session.user.id,
             }
         )
