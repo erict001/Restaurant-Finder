@@ -3,16 +3,9 @@ const render = document.getElementById('restaurantRender');
 const faveBtn = document.getElementById('faveBtn')
 const resId = document.getElementById('lid')
 
-var favorites = []
 
-function renderFavorites() {
-    var favItems = JSON.parse(localStorage.getItem("favorites"))
+favorites = JSON.parse(localStorage.getItem("favorites")) || []
 
-    // if (favItems){
-    //     var favorites = favItems
-    // }
-    
-}
 
 
 
@@ -91,5 +84,5 @@ function saveFavorite (event) {
     list.innerText = favorites[0]
     // favList.append(favorites[0])
     ol.append(list)
-    renderFavorites();
+    // renderFavorites();
 }
