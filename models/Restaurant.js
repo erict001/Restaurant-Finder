@@ -30,6 +30,10 @@ Restaurant.init({
     isClose: {
         type: DataTypes.BOOLEAN,
         allowNull:false
+    },
+    imageURL: {
+        type: DataTypes.TEXT,
+        allowNull:false
     }
 },{
     sequelize,

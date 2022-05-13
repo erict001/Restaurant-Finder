@@ -26,15 +26,22 @@ search.addEventListener("submit", event => {
                 for (let i = 0; i < Math.min(20, data.length); i++) {
                     const rest = document.createElement('li')
                     // const append = document.createElement('p')
-                    rest.textContent = JSON.stringify(data[i].name + data[i].location)
+                    rest.textContent = JSON.stringify(data[i].name + " " + data[i].location)
+
+                    const image = document.createElement('img')
+                    image.src = (data[i].imageURL)
+                    image.style = "height:80px"
+                    
                     const call = document.createElement('button')
                     call.innerText = 'Call'
                     const menu = document.createElement('button')
                     menu.innerText = 'Is working?'
                     const fave = document.createElement('button')
                     fave.innerText = 'Favorite Restaurant'
+                    fave.setAttribute('id', 'my-id')
+
                     render.appendChild(rest);
-                    rest.append(call,menu,fave);
+                    rest.append(image, call,menu,fave);
                 }
            })
             console.log(res)
