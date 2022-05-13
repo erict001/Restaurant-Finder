@@ -7,3 +7,7 @@
     margin-left: 20px;
     
 }
+
+#restaurantRender li {
+  height: 100px;
+}
