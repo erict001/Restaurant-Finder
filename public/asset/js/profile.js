@@ -8,7 +8,10 @@ var list;
 var favlistIt;
 var loclistIt;
 var modal = document.getElementById("myModal")
-var span = document.getElementsByClassName("close")[0]
+// var span = document.getElementsByClassName("close")[0]
+var modalTitle = document.getElementById("modalTitle")
+var closeBtn = document.getElementById("close-btn")
+var modalBody = document.getElementById("modalBody")
 
 
 favorites = JSON.parse(localStorage.getItem("favorites")) || []
@@ -34,9 +37,11 @@ function renderFavorites() {
         event.target.onclick = function () {
             modal.style.display = "block"
             console.log(event.target.id)
-            modal.textContent = locations[event.target.id]
+            console.log(locations[event.target.id])
+            modalTitle.textContent = `${favorites[event.target.id]}`
+            modalBody.textContent = `${locations[event.target.id]}`
         }
-        span.onclick = function () {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
         }
         window.onclick = function (event) {
