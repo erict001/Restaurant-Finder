@@ -7,6 +7,8 @@ var ol;
 var list;
 var favlistIt;
 var loclistIt;
+var modal = document.getElementById("myModal")
+var span = document.getElementsByClassName("close")[0]
 
 favorites = JSON.parse(localStorage.getItem("favorites")) || []
 locations = JSON.parse(localStorage.getItem("locations")) || []
@@ -17,7 +19,7 @@ function renderFavorites() {
         list = document.createElement("button");
         favlistIt = favorites[i]
         loclistIt = locations[i]
-        list.innerText = favlistIt + " " + loclistIt
+        list.innerText = favoriteItem 
         list.setAttribute('class','indigo darken-4 white-text')
         list.setAttribute("id",`${i}`)
         ol.append(list)      
@@ -25,27 +27,19 @@ function renderFavorites() {
     faveClick.addEventListener("click", event=>{
         event.preventDefault();
         console.log("clicked")
-        console.log(list.innerText)
-        console.log(this)
-        // console.log(this)
-        // const userFave = {
-        //     busName: favlistIt[i],
-        //     busLocal: loclistIt[i]
-        // };
-        // console.log(userFave)
-        // fetch("/api/restaurants", {
-        //     method: "POST",
-        //     body: JSON.stringify(userFave),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // }).then(res => {
-        //     if (res.ok) {
-        //         res.json().then(data => {
-        //             console.log(data)
-        //         })
-        //     }
-        // })
+        console.log(event.target)
+        event.target.onclick = function() {
+            modal.style.display = "block"
+            modal.textContent = event.target.innerText
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+          }          
+        window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
     })
 }
 renderFavorites();
@@ -117,6 +111,7 @@ function saveFavorite (event) {
     const ol = document.querySelector("#favoriteRender")
     const list = document.createElement("button");
     list.innerText = favorites[0]
+    list.setAttribute('class','indigo darken-4 white-text')
     // favList.append(favorites[0])
     ol.append(list)
     // renderFavorites();
