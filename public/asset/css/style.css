@@ -9,13 +9,30 @@
 }
 
 #restaurantRender li {
-  height: 150px;
+  height: fit-content;
+  border-bottom: 4px solid darkblue;
+}
+
+#restaurantRender img {
+  height:20vh; 
+  border: solid black 3px;
+  max-width: 40vh;
+}
+
+#restaurantRender button {
+  width: 70%;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 #favoriteRender button {
   height: 50px;
   width: 150px;
   margin-left: -30px;
+}
+
+#textdiv {
+  display: block;
 }
 
 .indigo {
