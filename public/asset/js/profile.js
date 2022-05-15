@@ -68,24 +68,36 @@ search.addEventListener("submit", event => {
             // console.log(data)
             clearRestaurants();
             for (let i = 0; i < Math.min(20, data.length); i++) {
+                render.setAttribute('class', 'container')
                 const rest = document.createElement('li')
                 // const restName = data[i].name
-                rest.setAttribute('id', 'lid')
+                rest.setAttribute('class', 'row align-items-start')
+                const textdiv = document.createElement('div')
+                textdiv.setAttribute('class', 'col-7')
+                const imgdiv = document.createElement('div')
+                imgdiv.setAttribute('class', 'col-5')
                 // const append = document.createElement('p')
                 var callRest = document.createElement('a')
                 callRest.setAttribute('href',`tel:${data[i].phone}`)
                 callRest.innerText = `${data[i].phone}`
-                rest.textContent = JSON.stringify(data[i].name + " " + data[i].location + " ")
+                const rname = document.createElement('h3')
+                rname.textContent = JSON.stringify(data[i].name)
+                const rlocale = document.createElement('h5')
+                rlocale.innerHTML = JSON.stringify(data[i].location)
+                // rest.textContent = JSON.stringify(data[i].name + " " + data[i].location + " ")
+                // rest.style.fontSize = "large"
                 const image = document.createElement('img')
                 image.src = (data[i].imageURL)
-                image.style = "height:80px"
+                
                 const fave = document.createElement('button')
                 fave.innerText = 'Favorite Restaurant'
                 fave.addEventListener("click", saveFavorite)
                 fave.setAttribute("data-restaurantName", data[i].name)
                 fave.setAttribute("data-restaurantLocation", data[i].name + data[i].location + data[i].phone + data[i].imageURL)
                 render.appendChild(rest);
-                rest.append(callRest, image, fave);
+                rest.append(textdiv, imgdiv)
+                textdiv.append(rname, rlocale, callRest, fave);
+                imgdiv.append(image);
             }
         })
         console.log(res)
