@@ -119,5 +119,5 @@ function saveFavorite (event) {
     list.setAttribute('class','indigo darken-4 white-text')
     // favList.append(favorites[0])
     ol.append(list)
-    // renderFavorites();
+    
 }
