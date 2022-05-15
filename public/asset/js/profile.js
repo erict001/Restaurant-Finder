@@ -7,43 +7,48 @@ var ol;
 var list;
 var favlistIt;
 var loclistIt;
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById("myModal")
+// var span = document.getElementsByClassName("close")[0]
+var modalTitle = document.getElementById("modalTitle")
+var closeBtn = document.getElementById("close-btn")
+var modalBody = document.getElementById("modalBody")
 
 favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 locations = JSON.parse(localStorage.getItem("locations")) || [];
 
 function renderFavorites() {
-  for (let i = 0; i < favorites.length; i++) {
-    ol = document.querySelector("#favoriteRender");
+for (let i = 0; i < favorites.length; i++) {
+    ol = document.querySelector("#favoriteRender")
     list = document.createElement("button");
-    favlistIt = favorites[i];
-    console.log(favorites);
-    loclistIt = locations[i];
-    list.innerText = favlistIt;
-    list.setAttribute("class", "indigo darken-4 white-text");
-    list.setAttribute("id", `${i}`);
-    ol.append(list);
-  }
-  faveClick.addEventListener("click", (event) => {
+    favlistIt = favorites[i]
+    console.log(favorites)
+    loclistIt = locations[i]
+    list.innerText = favlistIt
+    list.setAttribute('class', 'indigo darken-4 white-text')
+    list.setAttribute("id", `${i}`)
+    ol.append(list)
+}
+faveClick.addEventListener("click", event => {
     event.preventDefault();
-    console.log("clicked");
-    console.log(event.target.innerText);
+    console.log("clicked")
+    console.log(event.target.innerText)
 
     event.target.onclick = function () {
-      modal.style.display = "block";
-      console.log(event.target.id);
-      modal.textContent = locations[event.target.id];
-    };
-    span.onclick = function () {
-      modal.style.display = "none";
-    };
-    window.onclick = function (event) {
-      if (event.target == modal) {
+        modal.style.display = "block"
+        console.log(event.target.id)
+        console.log(locations[event.target.id])
+        modalTitle.textContent = `${favorites[event.target.id]}`
+        modalBody.textContent = `${locations[event.target.id]}`
+    }
+    closeBtn.onclick = function () {
         modal.style.display = "none";
-      }
-    };
-  });
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+})
 }
 renderFavorites();
 
