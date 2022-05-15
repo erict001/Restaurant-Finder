@@ -15,23 +15,29 @@
                     <br>
                     <button type="button" id="favorites" class="blue darken-3 btn btn-success">Favorites</button>
                     <ol id="favoriteRender">
-                    <br>
+                        <br>
                     </ol>
                 </form>
             </div>
             <div id="restaurant" class="blue lighten-4 col-8">List of Restaurants
-                <ol id="restaurantRender">
-
-                </ol>
-                <div id="myModal" class="modal">
-            <div class="modal-content">
-                <p></p>
-                <span class="close">&times;</span>
+                <ol id="restaurantRender"></ol>
+                <div id="myModal" class="modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 id="modalTitle" class="modal-title"></h5>
+                            </div>
+                            <div id="modalBody" class="modal-body">
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="close-btn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            {{!-- <span class="close">&times;</span> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            </div>
-            </div>
-
         </div>
     </div>
 </aside>

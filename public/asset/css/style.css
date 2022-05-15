@@ -25,3 +25,11 @@
 .white {
   margin-left: -10px
 }
+
+.modal {
+  width: fit-content;
+  height: fit-content;
+  max-height: fit-content;
+  max-width: fit-content;
+  border: none;
+}
