@@ -9,7 +9,7 @@
 }
 
 #restaurantRender li {
-  height: 150px;
+  height: fit-content;
   border-bottom: 4px solid darkblue;
 }
 
@@ -21,7 +21,8 @@
 
 #restaurantRender button {
   width: 70%;
-  margin-top: 1rem;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 #favoriteRender button {
@@ -31,7 +32,6 @@
 }
 
 #textdiv {
-  display: flex;
   display: block;
 }
 
