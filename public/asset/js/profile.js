@@ -22,81 +22,86 @@ function renderFavorites() {
         console.log(favorites)
         loclistIt = locations[i]
         list.innerText = favlistIt
-        list.setAttribute('class','indigo darken-4 white-text')
-        list.setAttribute("id",`${i}`)
-        ol.append(list)      
+        list.setAttribute('class', 'indigo darken-4 white-text')
+        list.setAttribute("id", `${i}`)
+        ol.append(list)
     }
-    faveClick.addEventListener("click", event=>{
+    faveClick.addEventListener("click", event => {
         event.preventDefault();
         console.log("clicked")
         console.log(event.target.innerText)
 
-        event.target.onclick = function() {
+        event.target.onclick = function () {
             modal.style.display = "block"
-               console.log(event.target.id)
-               modal.textContent = locations[event.target.id]
+            console.log(event.target.id)
+            modal.textContent = locations[event.target.id]
         }
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
-          }          
-        window.onclick = function(event) {
+        }
+        window.onclick = function (event) {
             if (event.target == modal) {
-              modal.style.display = "none";
+                modal.style.display = "none";
             }
-          }
+        }
     })
 }
 renderFavorites();
-            
+
 search.addEventListener("submit", event => {
     event.preventDefault();
     // console.log("clicked")
     const userObj = {
-    busName: document.querySelector("#name").value,
-    busLocal: document.querySelector("#local").value,
+        busName: document.querySelector("#name").value,
+        busLocal: document.querySelector("#local").value,
     };
     // console.log(userObj)
-    fetch("/api/restaurants", {
-    method: "POST",
-    body: JSON.stringify(userObj),
-    headers: {
-        "Content-Type": "application/json"
-    }
-    }).then(res => {
-    if (res.ok) {
-        res.json().then(data => {
-            // console.log(data)
-            clearRestaurants();
-            for (let i = 0; i < Math.min(20, data.length); i++) {
-                const rest = document.createElement('li')
-                // const restName = data[i].name
-                rest.setAttribute('id', 'lid')
-                // const append = document.createElement('p')
-                var callRest = document.createElement('a')
-                callRest.setAttribute('href',`tel:${data[i].phone}`)
-                callRest.innerText = `${data[i].phone}`
-                rest.textContent = JSON.stringify(data[i].name + " " + data[i].location + " ")
-                const image = document.createElement('img')
-                image.src = (data[i].imageURL)
-                image.style = "height:80px"
-                const fave = document.createElement('button')
-                fave.innerText = 'Favorite Restaurant'
-                fave.addEventListener("click", saveFavorite)
-                fave.setAttribute("data-restaurantName", data[i].name)
-                fave.setAttribute("data-restaurantLocation", data[i].name + data[i].location + data[i].phone + data[i].imageURL)
-                render.appendChild(rest);
-                rest.append(callRest, image, fave);
-            }
-        })
-        console.log(res)
-        // location.href = "/profile";
+    if (userObj.busName === '' || userObj.busLocal === '') {
+        alert('Please enter name/keyword or location/zipcode into search boxes.')
     } else {
-        alert("Invalid search");
+
+        fetch("/api/restaurants", {
+            method: "POST",
+            body: JSON.stringify(userObj),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(res => {
+            if (res.ok) {
+                res.json().then(data => {
+                    // console.log(data)
+                    clearRestaurants();
+                    for (let i = 0; i < Math.min(20, data.length); i++) {
+                        const rest = document.createElement('li')
+                        // const restName = data[i].name
+                        rest.setAttribute('id', 'lid')
+                        // const append = document.createElement('p')
+                        var callRest = document.createElement('a')
+                        callRest.setAttribute('href', `tel:${data[i].phone}`)
+                        callRest.innerText = `${data[i].phone}`
+                        rest.textContent = JSON.stringify(data[i].name + " " + data[i].location + " ")
+                        const image = document.createElement('img')
+                        image.src = (data[i].imageURL)
+                        image.style = "height:80px"
+                        const fave = document.createElement('button')
+                        fave.innerText = 'Favorite Restaurant'
+                        fave.addEventListener("click", saveFavorite)
+                        fave.setAttribute("data-restaurantName", data[i].name)
+                        fave.setAttribute("data-restaurantLocation", data[i].name + data[i].location + data[i].phone + data[i].imageURL)
+                        render.appendChild(rest);
+                        rest.append(callRest, image, fave);
+                    }
+                })
+                console.log(res)
+                // location.href = "/profile";
+            } else {
+                alert("Invalid search");
+            }
+        }).catch(e => {
+            console.error(e)
+        })
     }
-    }).catch(e => {
-    console.error(e)
-    })
-    });
+});
 
 function clearRestaurants() {
     while (render.lastChild) {
@@ -105,7 +110,7 @@ function clearRestaurants() {
 }
 
 
-function saveFavorite (event) {
+function saveFavorite(event) {
     favorites.unshift(event.target.getAttribute("data-restaurantName"))
     console.log(favorites + "===============================")
     locations.unshift(event.target.getAttribute("data-restaurantLocation"))
@@ -116,8 +121,8 @@ function saveFavorite (event) {
     const ol = document.querySelector("#favoriteRender")
     const list = document.createElement("button");
     list.innerText = favorites[0]
-    list.setAttribute('class','indigo darken-4 white-text')
+    list.setAttribute('class', 'indigo darken-4 white-text')
     // favList.append(favorites[0])
     ol.append(list)
-    
+
 }
