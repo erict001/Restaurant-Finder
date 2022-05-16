@@ -41,13 +41,14 @@ function renderFavorites() {
             modal.style.display = "block"
             console.log(event.target.id)
             console.log(phoneNumbers[event.target.id])
+            
+            const imgdiv = document.createElement("div");
+            imgdiv.setAttribute("class", "col-5");
 
             const telephone = document.createElement("a")
             telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
             telephone.textContent = `tel: ${phoneNumbers[event.target.id]}`
 
-            const imgdiv = document.createElement("div");
-            imgdiv.setAttribute("class", "col-5");
 
             const img = document.createElement("img")
             img.src = `${restImages[event.target.id]}`
@@ -56,7 +57,7 @@ function renderFavorites() {
 
             modalTitle.textContent = `${favorites[event.target.id]}`
             modalBody.textContent = `${locations[event.target.id]}`
-            modalBody.append(telephone, imgdiv)
+            modalBody.append(imgdiv, telephone)
             imgdiv.append(img)
         }
         closeBtn.onclick = function () {
