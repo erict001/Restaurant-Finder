@@ -40,8 +40,17 @@ function renderFavorites() {
             console.log(event.target.id)
             console.log(locations[event.target.id])
 
+            const telephone = document.createElement("a")
+            telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
+
+            const img = document.createElement("img")
+            img.src = `${restImages[event.target.id]}`
+            img.style = "height: 50px"
+            
+
             modalTitle.textContent = `${favorites[event.target.id]}`
-            modalBody.textContent = `${locations[event.target.id]}` + ' ' + `${phoneNumbers[event.target.id]}` + ' ' + `${restImages[event.target.id]}` + '<3'
+            modalBody.textContent = `${locations[event.target.id]}` + ' ' + telephone + ' ' + img
+            modalBody.append(telephone, img)
         }
         closeBtn.onclick = function () {
             modal.style.display = "none";
