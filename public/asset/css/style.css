@@ -31,7 +31,7 @@
 
 .indigo {
   margin-bottom: 15px;
-  width: 150px;
+  width: 25vw;
 }
 
 .white {
@@ -44,5 +44,9 @@
   max-height: fit-content;
   max-width: fit-content;
   border: none;
+}
+
+#favoriteRender {
+  margin-left: -30px
 }
 
