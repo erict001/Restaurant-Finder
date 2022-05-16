@@ -2,6 +2,8 @@ const search = document.querySelector("#search");
 const render = document.getElementById("restaurantRender");
 const resId = document.getElementById("lid");
 const faveClick = document.getElementById("favoriteRender");
+
+
 var ol;
 var list;
 var favlistIt;
@@ -39,22 +41,22 @@ function renderFavorites() {
             modal.style.display = "block"
             console.log(event.target.id)
             console.log(phoneNumbers[event.target.id])
-            render.setAttribute("class", "container");
 
             const telephone = document.createElement("a")
             telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
             telephone.textContent = `tel: ${phoneNumbers[event.target.id]}`
-            
+
             const imgdiv = document.createElement("div");
             imgdiv.setAttribute("class", "col-5");
 
             const img = document.createElement("img")
             img.src = `${restImages[event.target.id]}`
             img.style = "height: 150px"
+            
 
             modalTitle.textContent = `${favorites[event.target.id]}`
             modalBody.textContent = `${locations[event.target.id]}`
-            modalBody.append(imgdiv, telephone)
+            modalBody.append(telephone, imgdiv)
             imgdiv.append(img)
         }
         closeBtn.onclick = function () {
@@ -78,7 +80,7 @@ search.addEventListener("submit", (event) => {
     };
     // console.log(userObj)
     if (userObj.busName === "" || userObj.busLocal === "") {
-        alert("Please fill in both search fields.");
+        alert("Please enter name/keyword or location/zipcode into search boxes.");
     } else {
         fetch("/api/restaurants", {
             method: "POST",
@@ -98,9 +100,11 @@ search.addEventListener("submit", (event) => {
                             // const restName = data[i].name
                             rest.setAttribute("class", "row align-items-start");
                             const textdiv = document.createElement("div");
-                            textdiv.setAttribute("class", "col-7");
+                            textdiv.setAttribute("class", "col-md-7");
+                            textdiv.setAttribute("class", "col-sm");
                             const imgdiv = document.createElement("div");
-                            imgdiv.setAttribute("class", "col-5");
+                            imgdiv.setAttribute("class", "col-md-5");
+                            imgdiv.setAttribute("class", "col-sm");
                             // const append = document.createElement('p')
                             var callRest = document.createElement("a");
                             callRest.setAttribute("href", `tel:${data[i].phone}`);
@@ -169,4 +173,8 @@ function saveFavorite(event) {
     list.setAttribute("class", "indigo darken-4 white-text collection-item");
     // favList.append(favorites[0])
     ol.append(list);
+}
+function deleteItems() {
+    // Clear localStorage items 
+    window.localStorage.clear(); //clear all localstorage
 }
