@@ -38,19 +38,32 @@ function renderFavorites() {
         event.target.onclick = function () {
             modal.style.display = "block"
             console.log(event.target.id)
-            console.log(locations[event.target.id])
+            console.log(phoneNumbers[event.target.id])
 
-            const telephone = document.createElement("a")
-            telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
+            // const textdiv = document.createElement("div");
+            // textdiv.setAttribute("class", "col-7");
+
+            const telephone = document.createElement("a");
+            telephone.setAttribute('href', `tel:${phoneNumbers[event.target.id]}`);
+            telephone.textContent = `tel:${phoneNumbers[event.target.id]}`
+
+            // var callRest = document.createElement("a");
+            //                 callRest.setAttribute("href", `tel:${data[i].phone}`);
+            //                 callRest.innerText = `${data[i].phone}`;
+            //                 callRest.setAttribute("class","fs-5")
+
+            const imgdiv = document.createElement("div");
+            imgdiv.setAttribute("class", "col-5");
 
             const img = document.createElement("img")
             img.src = `${restImages[event.target.id]}`
-            img.style = "height: 50px"
+            img.style = "height: 150px"
             
 
             modalTitle.textContent = `${favorites[event.target.id]}`
-            modalBody.textContent = `${locations[event.target.id]}` + ' ' + telephone + ' ' + img
-            modalBody.append(telephone, img)
+            modalBody.textContent = `${locations[event.target.id]}`
+            modalBody.append(telephone, imgdiv)
+            imgdiv.append(img)
         }
         closeBtn.onclick = function () {
             modal.style.display = "none";
@@ -117,7 +130,7 @@ search.addEventListener("submit", (event) => {
                             fave.setAttribute("data-restPhone", data[i].phone);
                             fave.setAttribute("data-restImg", data[i].imageURL)
                             
-                            fave.setAttribute('class','green lighten-4 border rounded')
+                            fave.setAttribute('class','green lighten-4')
                             render.appendChild(rest);
                             rest.append(textdiv, imgdiv);
                             textdiv.append(rname, rlocale, callRest, fave);
@@ -161,7 +174,7 @@ function saveFavorite(event) {
     let i = favorites.length -1
     list.innerText = favorites[i];
     list.setAttribute("id", `${i}`)
-    list.setAttribute("class", "indigo darken-4 white-text collection-item border rounded-pill");
+    list.setAttribute("class", "indigo darken-4 white-text collection-item");
     // favList.append(favorites[0])
     ol.append(list);
 }
