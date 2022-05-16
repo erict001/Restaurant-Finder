@@ -78,7 +78,7 @@ search.addEventListener("submit", (event) => {
     };
     // console.log(userObj)
     if (userObj.busName === "" || userObj.busLocal === "") {
-        alert("Please enter name/keyword or location/zipcode into search boxes.");
+        alert("Please fill in both search fields.");
     } else {
         fetch("/api/restaurants", {
             method: "POST",
