@@ -26,7 +26,7 @@ function renderFavorites() {
         console.log(favorites)
         loclistIt = locations[i]
         list.innerText = favlistIt
-        list.setAttribute('class', 'indigo darken-4 white-text collection-item border rounded-pill')
+        list.setAttribute('class', 'indigo darken-4 white-text collection-item')
         list.setAttribute("id", `${i}`)
         ol.append(list)
     }
@@ -40,17 +40,9 @@ function renderFavorites() {
             console.log(event.target.id)
             console.log(phoneNumbers[event.target.id])
 
-            // const textdiv = document.createElement("div");
-            // textdiv.setAttribute("class", "col-7");
-
-            const telephone = document.createElement("a");
-            telephone.setAttribute('href', `tel:${phoneNumbers[event.target.id]}`);
-            telephone.textContent = `tel:${phoneNumbers[event.target.id]}`
-
-            // var callRest = document.createElement("a");
-            //                 callRest.setAttribute("href", `tel:${data[i].phone}`);
-            //                 callRest.innerText = `${data[i].phone}`;
-            //                 callRest.setAttribute("class","fs-5")
+            const telephone = document.createElement("a")
+            telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
+            telephone.textContent = `tel: ${phoneNumbers[event.target.id]}`
 
             const imgdiv = document.createElement("div");
             imgdiv.setAttribute("class", "col-5");
