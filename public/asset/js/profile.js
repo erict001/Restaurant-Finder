@@ -134,13 +134,13 @@ function clearRestaurants() {
 }
 
 function saveFavorite(event) {
-    favorites.unshift(event.target.getAttribute("data-restName"));
+    favorites.push(event.target.getAttribute("data-restName"));
     console.log(favorites);
-    locations.unshift(event.target.getAttribute("data-restLocation"));
+    locations.push(event.target.getAttribute("data-restLocation"));
     console.log(locations);
-    phoneNumbers.unshift(event.target.getAttribute("data-restPhone"));
+    phoneNumbers.push(event.target.getAttribute("data-restPhone"));
     console.log(locations);
-    restImages.unshift(event.target.getAttribute("data-restImg"));
+    restImages.push(event.target.getAttribute("data-restImg"));
     console.log(locations);
     // console.log(favorites)
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -149,8 +149,8 @@ function saveFavorite(event) {
     localStorage.setItem("restImages", JSON.stringify(restImages));
     ol = document.querySelector("#favoriteRender");
     list = document.createElement("button");
-    list.innerText = favorites[0];
-    let i = favorites.length - 1
+    let i = favorites.length -1
+    list.innerText = favorites[i];
     list.setAttribute("id", `${i}`)
     list.setAttribute("class", "indigo darken-4 white-text collection-item border rounded-pill");
     // favList.append(favorites[0])
