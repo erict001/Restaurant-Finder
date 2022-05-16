@@ -26,7 +26,7 @@ function renderFavorites() {
         console.log(favorites)
         loclistIt = locations[i]
         list.innerText = favlistIt
-        list.setAttribute('class', 'indigo darken-4 white-text collection-item border rounded-pill')
+        list.setAttribute('class', 'indigo darken-4 white-text collection-item')
         list.setAttribute("id", `${i}`)
         ol.append(list)
     }
@@ -42,14 +42,15 @@ function renderFavorites() {
 
             const telephone = document.createElement("a")
             telephone.setAttribute("href", `tel: ${phoneNumbers[event.target.id]}`);
+            telephone.textContent = `tel: ${phoneNumbers[event.target.id]}`
 
             const img = document.createElement("img")
             img.src = `${restImages[event.target.id]}`
-            img.style = "height: 50px"
+            img.style = "height: 150px"
             
 
             modalTitle.textContent = `${favorites[event.target.id]}`
-            modalBody.textContent = `${locations[event.target.id]}` + ' ' + telephone + ' ' + img
+            modalBody.textContent = `${locations[event.target.id]}`
             modalBody.append(telephone, img)
         }
         closeBtn.onclick = function () {
